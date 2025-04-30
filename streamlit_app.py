@@ -1,20 +1,18 @@
 import streamlit as st
 import pandas as pd
-from dotenv import load_dotenv
-import os
 import json
 import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from openai import OpenAI
 
-# Load environment variables
-load_dotenv()
+# Get API keys from Streamlit secrets
+st.secrets.toml
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-CSE_ID = os.getenv("CSE_ID")
+client = OpenAI(api_key=st.secrets["openai"]["api_key"])
+GOOGLE_API_KEY = st.secrets["google"]["api_key"]
+CSE_ID = st.secrets["google"]["cse_id"]
 
 # Load dataset
 @st.cache_data
